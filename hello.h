@@ -1,4 +1,4 @@
-#ifndef HELLO.H
+#ifndef HELLO_H
 #include <iostream>
 
 std::string Hallo();
