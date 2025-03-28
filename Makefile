@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS=-Werror -Wpedantic -Wall -std=c++17
 LDFLAGS=-lgtest -lgtest_main -lpthread
-SOURCES=tests.cpp
+SOURCES=main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=tests
+EXECUTABLE=main
 
 all: $(EXECUTABLE)
 

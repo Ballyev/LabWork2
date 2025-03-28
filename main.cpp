@@ -1,8 +1,6 @@
 #include <iostream>
 
-#include "hello.h"
-
-
-int main (){
-    std::cout << Hallo();
+int main()
+{
+    std::cout << "Arhitecture" << std::endl;
 }
