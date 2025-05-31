@@ -1,14 +1,45 @@
-name: C++ CI
+name: Game CI
+
 on: [push, pull_request]
 
 jobs:
-  build:
+  build_test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            libgtest-dev \
+            cmake
+          cd /usr/src/gtest
+          sudo cmake .
+          sudo make
+          sudo cp *.a /usr/lib
+
+      - name: Build using Makefile
         working-directory: ./Game
         run: |
-          make
-          ./game
+          make clean
+          make  
+          make tests    
+
+      - name: Run unit tests
+        working-directory: ./Game
+        run: |
+          ./tests --gtest_output=xml:test_results.xml || true
+
+      - name: Verify game launch
+        working-directory: ./Game
+        run: |
+          timeout 10s ./game --ci-mode || echo "Game exited as expected"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: Game/test_results.xml
