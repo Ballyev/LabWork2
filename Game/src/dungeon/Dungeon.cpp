@@ -28,7 +28,7 @@ void Dungeon::generate(int roomCount) {
 
         if (std::rand() % 100 < 70) {
             int baseHealth = 20 + difficultyLevel * 10;
-            int baseAttack = 5 + difficultyLevel * 3;  // Базовая атака от 5 до 14 (если сложность 1-3)
+            int baseAttack = 5 + difficultyLevel * 3;
 
 
             std::string name = monsterNames[std::rand() % monsterNames.size()];
@@ -56,8 +56,6 @@ void Dungeon::generate(int roomCount) {
             if (baseAttack > 15) {
                 baseAttack = 15;
             }
-
-            /
             auto enemy = std::make_unique<Enemy>(
                 name,
                 baseHealth,
