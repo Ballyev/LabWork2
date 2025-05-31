@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Skills.h"
 
-Skills::Skills(std::string name, std::string description, int cooldown, bool isActive) : name(name), description(description), cooldown(cooldown), isActive(isActive) {}
+Skills::Skills(std::string name, std::string description, int cooldown, bool isActive, int currentCooldown)
+    : name(std::move(name)), description(std::move(description)), cooldown(cooldown), isActive(isActive), currentCooldown(currentCooldown) {}
 
-    // Показывает информацию о способности
+
     void Skills::inspect() const {
         std::cout << "Skill: " << name << "\n"
                   << "Description: " << description << "\n"
@@ -16,9 +17,8 @@ Skills::Skills(std::string name, std::string description, int cooldown, bool isA
 void Skills::updateCooldown() {
     if (currentCooldown > 0) {
         currentCooldown--;
-
-        if (currentCooldown == 0) {  // Без лишних условий!
-            isActive = true;  // Способность снова доступна
+        if (currentCooldown == 0) {
+            isActive = true;
             std::cout << name << " готова к использованию!\n";
         }
     }

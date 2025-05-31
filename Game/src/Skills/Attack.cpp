@@ -2,17 +2,22 @@
 #include <iostream>
 #include "../all_characters/hero/Hero.h"
 
-Attack::Attack(int damageMultiplier, std::string name, std::string description, int cooldown, bool isActive, int baseDamage) : Skills (name, description, cooldown, isActive) {}
+Attack::Attack(int damageMultiplier, std::string name, std::string description, int cooldown, bool isActive, int baseDamage, int currentCooldown)
+    : Skills(name, description, cooldown, isActive, currentCooldown), damageMultiplier(damageMultiplier), baseDamage(baseDamage) {}
 
-void Attack::comboAttack() {
-    if (isActive) {
-        int comboDamage =  damageMultiplier * 2;
-        std::cout << "Combo attack! Damage: " << comboDamage << std::endl;
-        cooldown += 1;
+
+void Attack::comboAttack(Enemy& target) {
+    if (isActive && currentCooldown == 0) {
+        int comboDamage = baseDamage * damageMultiplier;
+        target.takeDamage(comboDamage);
+        std::cout << "Комбо-атака! Урон: " << comboDamage << "\n";
+        currentCooldown = cooldown;
+        isActive = false;
     } else {
-        std::cout << "Attack is not active!" << std::endl;
+        std::cout << "Атака не активна или в откате!\n";
     }
 }
+
 
 void Attack::criticalHit(Enemy& target) {
     if (!isActive) {

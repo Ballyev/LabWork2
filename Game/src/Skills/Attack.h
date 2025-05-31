@@ -10,10 +10,10 @@ class Attack : public Skills
     int damageMultiplier;
     int baseDamage;
 
-    Attack(int damageMultiplier, std::string name, std::string description, int cooldown, bool isActive, int baseDamage);
+    Attack(int damageMultiplier, std::string name, std::string description, int cooldown, bool isActive, int baseDamage, int currentCooldown = 0);
 
     void criticalHit(Enemy& target);
-    void comboAttack();
+    void comboAttack(Enemy& target);
     ~Attack() = default;
 
 };

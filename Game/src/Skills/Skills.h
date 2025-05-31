@@ -13,13 +13,13 @@ class Skills {
     bool isActive;
     int currentCooldown;
 
-    Skills(std::string name, std::string description, int cooldown, bool isActive);
+    Skills(std::string name, std::string description, int cooldown, bool isActive, int currentCooldown = 0);
 
 
     void inspect() const;
     void updateCooldown();
 
-    ~Skills() = default;
+    virtual ~Skills() = default;
 };
 
 #endif

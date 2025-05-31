@@ -1,27 +1,19 @@
 #include "Magic.h"
 #include <iostream>
 
-Magic::Magic(std::string name, std::string description, int cooldown, bool isActive, int manaCost) : Skills (name, description, cooldown, isActive) {}
+Magic::Magic(std::string name, std::string description, int cooldown, bool isActive, int manaCost, int damage, int currentCooldown) : Skills (name, description, cooldown, isActive, currentCooldown), manaCost(manaCost), damage(damage) {}
 
-void Magic::aoeDamage(std::vector<Enemy>& enemies) {
-    if (currentCooldown > 0) {
-        std::cout << name << " на перезарядке! Осталось " << currentCooldown << " ходов\n";
+void Magic::singleTargetDamage(Enemy* target) {
+    if (!target || !target->isAlive()) {
+        std::cout << "Цель недоступна для заклинания.\n";
         return;
     }
-    if (!isActive) {
-        std::cout << name << " недоступно для использования!\n";
-        return;
-    }
-    std::cout << name << " наносит AoE урон!\n";
-    for (Enemy& enemy : enemies) {
-        enemy.health -= damage;
-        std::cout << "  " << enemy.name << " получает " << damage << " урона. ";
-        if (enemy.health <= 0) {
-            std::cout << enemy.name << " повержен!" << std::endl;
-        }
-    }
+
+    target->takeDamage(damage);
+    std::cout << name << " наносит урон " << damage << " по " << target->name << ".\n";
+
     currentCooldown = cooldown;
-    std::cout << name << " перезаряжается (" << cooldown << " ходов)\n";
+    isActive = false;
 }
 
 void Magic::update() {
@@ -33,6 +25,7 @@ void Magic::update() {
         }
     }
 }
+
 void Magic::debuff(Enemy& target_enemy) {
     if (isActive == true) {
         target_enemy.attackPower /= 2;
