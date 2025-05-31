@@ -1,9 +1,23 @@
 #include "Enemy.h"
 #include <iostream>
+#include "all_characters/Character.h"
 
-Enemy::Enemy(int reward, int attack, int defence, std::string name, int health, int attackPower) : Character(attack, defence, name, health) {}
+Enemy::Enemy(std::string name, int health, int attack, int defence, int attackPower) : Character(name, health, attack, defence), attackPower(attackPower) {}
 
-void Enemy::roar() const {
-    std::cout << "RAWWWR! Attack power: " << attack << std::endl;
+
+void Enemy::attack_hero(Hero& target) {
+    std::cout << name << " атакует " << target.name << "!" << std::endl;
+    target.takeDamage(attack);
 }
 
+void Enemy::takeDamage(int damage) {
+    health -= damage;
+    std::cout << name << " получает " << damage << " урона. Осталось HP: " << health << std::endl;
+    if(health <= 0) {
+        health = 0;
+        std::cout << name << " повержен!" << std::endl;
+    }
+}
+bool Enemy::isAlive() const {
+    return health > 0;
+}

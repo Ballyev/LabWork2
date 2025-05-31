@@ -1,23 +1,24 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
-#include "../Skills/Attack.h"
-#include "../Skills/Defence.h"
-#include "../Enemy.h"
+#include <iostream>
+
+class Enemy;
 
 class Character {
 public:
     std::string name;
     int health;
-    Attack attack;
-    Defence defence;
+    int attack;
+    int defence;
 
-    Character(std::string name, int health, Attack attack,Defence defence);
 
-    void takeDamage(int damage);
+    Character(std::string name, int health,int attack,int defence);
+
+    virtual void takeDamage(int damage);
     void displayInfo() const;
-    void attackTarget(Enemy& );
-    void defend();
+    void attackTarget(Enemy& enemy);
+    void defend(int currentDefendCooldown, int originalDefence);
 
-    ~Character() = default;
+    virtual ~Character() = default;
 };
 #endif

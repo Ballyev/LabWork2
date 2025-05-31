@@ -1,23 +1,34 @@
-#include <iostream>
 #include "Room.h"
+#include "../Enemy.h"
+Room::Room() = default;
 
-Room::Room(bool isEnemy, bool isTreasure, int level) : Dungeon(level) {}
-
-
-void Room::addEnemy() {
-        if (!isEnemy) {
-            isEnemy = true;
-            std::cout << "В комнате появился враг!\n";
-        } else {
-            std::cout << "В комнате никого нет.\n";
-        }
+void Room::addEnemy(std::unique_ptr<Enemy> enemy) {
+    if (enemy) {
+        enemies.push_back(std::move(enemy));
+        hasEnemy = true;
     }
+}
 
-    void Room::addTreasure() {
-        if (!isTreasure) {
-            isTreasure = true;
-            std::cout << "В комнате есть сокровище!\n";
-        } else {
-            std::cout << "В комнате нет сокровищь.\n";
-        }
+void Room::clearRoom() {
+    enemies.clear();
+    hasEnemy = false;
+}
+
+bool Room::hasAliveEnemies() const {
+    for (const auto& enemy : enemies) {
+        if (enemy->isAlive()) return true;
     }
+    return false;
+}
+
+void Room::printInfo() const {
+    std::cout << "\n=== Комната ===\n";
+    if (hasEnemy && !enemies.empty()) {
+        std::cout << "Врагов: " << enemies.size() << "\n";
+        for (const auto& enemy : enemies) {
+            std::cout << "- " << enemy->name << " (HP: " << enemy->health << ")\n";
+        }
+    } else {
+        std::cout << "Врагов: нет\n";
+    }
+}

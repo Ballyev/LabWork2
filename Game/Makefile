@@ -1,25 +1,53 @@
-CC=g++
-CFLAGS=-Werror -Wpedantic -Wall -std=c++17
-LDFLAGS=-lgtest -lgtest_main -lpthread
+CC = g++
+CXXFLAGS = -Werror -Wpedantic -Wall -std=c++17 -pthread -I/usr/include
+LDFLAGS_TEST = -pthread /usr/local/lib/libgtest.a /usr/local/lib/libgtest_main.a -lpthread
 
-SOURCE_DIRECTORIES = src src/obj src/Skills src/dungeon src/combat_system src/all_characters src/all_characters/hero/mage rogue warrior
-SOURCES = $(wildcard src/**/*.cpp) main.cpp
+SRC_DIRS = \
+    src \
+    src/obj \
+    src/Skills \
+    src/dungeon \
+    src/all_characters \
+    src/all_characters/hero \
+    src/all_characters/hero/mage \
+    src/all_characters/hero/rogue \
+    src/all_characters/hero/warrior \
+    src/BattleSystem
+
+SOURCES = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
 OBJECTS = $(SOURCES:.cpp=.o)
 
-EXECUTABLE=test
+MAIN_SRC = main.cpp
+TEST_SRC = tests.cpp
 
-all: $(EXECUTABLE)
+MAIN_OBJ = main.o
+TEST_OBJ = tests.o
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) $(CFLAGS) $(LDFLAGS) -o $@
+EXEC_GAME = game
+EXEC_TEST = run_tests
+
+all: $(EXEC_GAME)
+
+$(EXEC_GAME): $(OBJECTS) $(MAIN_OBJ)
+	$(CC) $(CXXFLAGS) $^ -o $@
+
+$(EXEC_TEST): $(OBJECTS) $(TEST_OBJ)
+	$(CC) $(CXXFLAGS) $^ -o $@ $(LDFLAGS_TEST)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CXXFLAGS) -c $< -o $@
 
-.PHONY: clean
+main.o: $(MAIN_SRC)
+	$(CC) $(CXXFLAGS) -c $(MAIN_SRC) -o $@
+
+tests.o: $(TEST_SRC)
+	$(CC) $(CXXFLAGS) -c $(TEST_SRC) -o $@
+
+test: $(EXEC_TEST)
+	./$(EXEC_TEST)
+
+run: $(EXEC_GAME)
+	./$(EXEC_GAME)
 
 clean:
-	rm -rf $(EXECUTABLE) $(OBJECTS) *.mk
-
-
-
+	rm -rf $(EXEC_GAME) $(EXEC_TEST) $(OBJECTS) $(MAIN_OBJ) $(TEST_OBJ) *.o

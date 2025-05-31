@@ -1,22 +1,23 @@
 #ifndef ROOM_H
 #define ROOM_H
-#include <iostream>
-#include "Dungeon.h"
 
-class Room : public Dungeon
-{
-    public:
-    bool isEnemy;
-    bool isTreasure;
+#include <vector>
+#include <string>
+#include <memory>
 
-    Room(bool isEnemy, bool isTreasure, int level);
+class Enemy;
 
-    void addEnemy();
-    void addTreasure();
+class Room {
+public:
+    bool hasEnemy;
+    std::vector<std::unique_ptr<Enemy>> enemies;
 
-    ~Room() = default;
+    Room();
+
+    void addEnemy(std::unique_ptr<Enemy> enemy);
+    void clearRoom();
+    void printInfo() const;
+    bool hasAliveEnemies() const;
 };
-
-
 
 #endif

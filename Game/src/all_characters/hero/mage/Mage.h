@@ -1,12 +1,11 @@
 #ifndef MAGE_H
 #define MAGE_H
 #include "../Hero.h"
-#include <iostream>
-#include <memory>
 #include <vector>
 #include "../../../obj/Item.h"
 #include "../../../obj/Potion.h"
-#include "../../../Skills/Magic.h"
+
+class Magic;
 
 class Mage : public Hero 
 {
@@ -16,12 +15,11 @@ class Mage : public Hero
 
     std::vector<Item*> itemSector={};
 
-    void castSpell(const Magic& spell);
-    void heal();
-    void usePotion(const Potion*);
-    
-    
     Mage(int level, int experience, int attack, int defence, std::string name, int health, int mana, int spellPower);
+
+    void heal();
+    void usePotion(Potion* potion, Enemy& target);
+
     ~Mage() = default;
 };
 

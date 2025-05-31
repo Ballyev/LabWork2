@@ -2,22 +2,25 @@
 #include "Boss.h"
 #include <vector>
 
-Boss::Boss(int reward, int attack, int defence, std::string name, int health, int phase, bool isEnraged) : Enemy (reward, attack, defence, name, health) {}
+Boss::Boss(std::string name, int health,int attack,int defence,int attackPower, int phase, bool isEnraged) : Enemy (name, health, attack, defence, attackPower) {}
 
-void Boss::summonMinions(int count) 
-{
-    std::cout << name << " призывает " << count << " миньонов!\n";
-    for (int i = 1; i <= count; ++i) 
-    {
-        minions.push_back("Миньон #" + std::to_string(i));
+void Boss::ultimateAbility(Hero& target) {
+    if (!isAlive()) {
+        std::cout << name << " не может использовать способность - он повержен!\n";
+        return;
     }
-}
+    if (!target.isAlive()) {
+        std::cout << "Нельзя атаковать мертвую цель!\n";
+        return;
+    }
 
-void Boss::ultimateAbility(bool isEnraged) {
-    if (isEnraged || health < 50) {  
-        attack *= 2; 
-        std::cout << "Ярость! Увеличена атака!!! Теперь атака: " << attack << std::endl;
+    if (isEnraged || health < 50) {
+        int originalAttack = attack;
+        attack *= 2;
+        target.takeDamage(attack);
+        std::cout << "Ярость! Атака увеличена с " << originalAttack
+                  << " до " << attack << " и нанесен урон!\n";
     } else {
-        std::cout << "Условия для ярости не выполнены" << std::endl;
+        std::cout << "Условия для ярости не выполнены\n";
     }
 }

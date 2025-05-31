@@ -3,22 +3,26 @@
 #include "../Character.h"
 #include "../../obj/Item.h"
 #include "../../obj/Weapon.h"
-#include "../../Enemy.h"
 #include <vector>
 #include <memory>
-class Hero : public Character
-{
+#include "../../Skills/Skills.h"
+class Hero : public Character{
     public:
     int level;
     int experience;
+    Weapon *Gun;
+    int currentDefendCooldown = 0;
+    int originalDefence = 0;
 
     Hero(int level, int experience, int attack, int defence, std::string name, int health);
-
+    std::vector<std::unique_ptr<Skills>> skills;
     std::vector<std::unique_ptr<Item>> itemSector={};
 
-    void comboAttack(Enemy vrag);
     void levelUp();
-    void useItem(std::unique_ptr<Weapon>);
+    void equipWeapon(Weapon *);
+    bool isAlive() const { return health > 0; }
+    void gainExperience(int amount);
+    void endTurn();
 
 
     ~Hero() = default;

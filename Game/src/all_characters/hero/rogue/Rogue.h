@@ -4,6 +4,7 @@
 #include<vector>
 #include "../../../obj/Scroll.h"
 #include "../../../obj/Item.h"
+#include "../Hero.h"
 
 
 class Rogue : public Hero 
@@ -16,6 +17,7 @@ class Rogue : public Hero
     Rogue(int level, int experience, int attack, int defence, std::string name, int health, int stealth, int criticalChance);
 
     std::vector<std::unique_ptr<Item>> itemSector={};
+
     unsigned int sneakAttack(unsigned int baseDamage);
     void useScroll(std::unique_ptr<Scroll>);
     

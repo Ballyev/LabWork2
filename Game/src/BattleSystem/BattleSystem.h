@@ -1,8 +1,32 @@
-//
-// Created by Eziz on 16.05.2025.
-//
+#pragma once
+#include "../all_characters/hero/Hero.h"
+#include "../Enemy.h"
+#include "../dungeon/Dungeon.h"
+#include "../Skills/Skills.h"
 
-#ifndef BATTLESYSTEM_H
-#define BATTLESYSTEM_H
+class BattleSystem {
+public:
+    BattleSystem(Hero& h, Enemy& e, Dungeon& d);
+    void startBattle();
+    void updateDefence();
 
-#endif //BATTLESYSTEM_H
+private:
+    Hero& hero;
+    Enemy& enemy;
+    int activeDefenceBonus = 0;
+    int defenceDurationLeft = 0;
+    Dungeon& dungeon;
+
+
+
+    bool isHeroAlive() const;
+    bool isEnemyAlive() const;
+
+    void heroTurn();
+    void useBasicAttack();
+    void useSkill();
+    void useItem();
+    void useDefence();
+    void enemyTurn();
+
+};
