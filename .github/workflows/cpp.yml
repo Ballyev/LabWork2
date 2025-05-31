@@ -11,4 +11,4 @@ jobs:
         working-directory: ./Game
         run: |
           make
-          ./main
+          ./game
