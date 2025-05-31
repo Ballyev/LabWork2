@@ -1,13 +1,15 @@
-name: Game CI
+name: Game CI Pipeline
 
 on: [push, pull_request]
 
 jobs:
-  build_test:
+  build_and_test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
@@ -15,31 +17,36 @@ jobs:
           sudo apt-get install -y \
             build-essential \
             libgtest-dev \
-            cmake
+            cmake \
+            libsdl2-dev \
+            libsfml-dev
+
+          # Установка Google Test
           cd /usr/src/gtest
           sudo cmake .
           sudo make
           sudo cp *.a /usr/lib
 
-      - name: Build using Makefile
+      - name: Build game
         working-directory: ./Game
         run: |
           make clean
-          make  
-          make tests    
+          make -j$(nproc) game
+          [ -f ./game ] || { echo "Game binary not found!"; exit 1; }
+
+      - name: Build tests
+        working-directory: ./Game
+        run: |
+          make -j$(nproc) tests
+          [ -f ./tests ] || { echo "Tests binary not found!"; exit 1; }
 
       - name: Run unit tests
         working-directory: ./Game
         run: |
-          ./tests --gtest_output=xml:test_results.xml || true
+          ./tests --gtest_output=xml:test_results.xml
+          echo "Unit tests completed"
 
-      - name: Verify game launch
+      - name: Test game launch
         working-directory: ./Game
         run: |
-          timeout 10s ./game --ci-mode || echo "Game exited as expected"
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-reports
-          path: Game/test_results.xml
+          timeout 15s ./game --test-mode || echo "Game test completed"
