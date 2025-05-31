@@ -1,11 +1,10 @@
-name: Game CI Pipeline
+name: Game CI
 
 on: [push, pull_request]
 
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
 
     steps:
       - name: Checkout code
@@ -14,39 +13,24 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            build-essential \
-            libgtest-dev \
-            cmake \
-            libsdl2-dev \
-            libsfml-dev
-
-          # Установка Google Test
+          sudo apt-get install -y build-essential libgtest-dev
           cd /usr/src/gtest
-          sudo cmake .
-          sudo make
-          sudo cp *.a /usr/lib
+          sudo cmake -B build
+          sudo cmake --build build
+          sudo cp build/lib/libgtest*.a /usr/local/lib/
 
-      - name: Build game
+      - name: Build project
         working-directory: ./Game
         run: |
           make clean
-          make -j$(nproc) game
-          [ -f ./game ] || { echo "Game binary not found!"; exit 1; }
-
-      - name: Build tests
-        working-directory: ./Game
-        run: |
-          make -j$(nproc) tests
-          [ -f ./tests ] || { echo "Tests binary not found!"; exit 1; }
+          make -j$(nproc) $(EXEC_GAME) $(EXEC_TEST)
 
       - name: Run unit tests
         working-directory: ./Game
         run: |
-          ./tests --gtest_output=xml:test_results.xml
-          echo "Unit tests completed"
+          make test
 
-      - name: Test game launch
+      - name: Verify game binary
         working-directory: ./Game
         run: |
-          timeout 15s ./game --test-mode || echo "Game test completed"
+          [ -f ./$(EXEC_GAME) ] && echo "Game built successfully" || exit 1
