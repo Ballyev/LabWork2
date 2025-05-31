@@ -1,0 +1,22 @@
+#ifndef ATTACK_H
+#define ATTACK_H
+#include <iostream>
+#include "Skills.h"
+#include "../Enemy.h"
+
+class Attack : public Skills
+{
+    public:
+    int damageMultiplier;
+    int baseDamage;
+
+    Attack(int damageMultiplier, std::string name, std::string description, int cooldown, bool isActive, int baseDamage);
+
+    void criticalHit(Enemy& target);
+    void comboAttack();
+    ~Attack() = default;
+
+};
+
+
+#endif
