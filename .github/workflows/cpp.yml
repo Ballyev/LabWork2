@@ -23,7 +23,7 @@ jobs:
         working-directory: ./Game
         run: |
           make clean
-          make -j$(nproc) $(EXEC_GAME) $(EXEC_TEST)
+          make -j$(nproc) game run_tests  
 
       - name: Run unit tests
         working-directory: ./Game
@@ -33,4 +33,9 @@ jobs:
       - name: Verify game binary
         working-directory: ./Game
         run: |
-          [ -f ./$(EXEC_GAME) ] && echo "Game built successfully" || exit 1
+          if [ -f ./game ]; then
+            echo "Game built successfully"
+          else
+            echo "Error: Game binary not found!"
+            exit 1
+          fi
