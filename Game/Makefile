@@ -19,10 +19,10 @@ SOURCES = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
 OBJECTS = $(SOURCES:.cpp=.o)
 
 MAIN_SRC = main.cpp
-TEST_SRC = tests.cpp
+TEST_SRC = tests/tests.cpp
 
 MAIN_OBJ = main.o
-TEST_OBJ = tests.o
+TEST_OBJ = tests/tests.o
 
 EXEC_GAME = game
 EXEC_TEST = run_tests

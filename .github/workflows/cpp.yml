@@ -13,22 +13,23 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libgtest-dev
-          cd /usr/src/gtest
-          sudo cmake -B build
+          sudo apt-get install -y build-essential cmake libgtest-dev
+          cd /usr/src/googletest
+          sudo cmake -B build -DCMAKE_BUILD_TYPE=Release
           sudo cmake --build build
-          sudo cp build/lib/libgtest*.a /usr/local/lib/
+          sudo cmake --install build
 
       - name: Build project
         working-directory: ./Game
         run: |
           make clean
-          make -j$(nproc) game run_tests  
+          make -j$(nproc) game  # Сначала собираем игру
+          make -j$(nproc) run_tests  # Затем тесты (если нужно)
 
       - name: Run unit tests
         working-directory: ./Game
         run: |
-          make test
+          ./run_tests  # Запускаем собранный бинарник тестов
 
       - name: Verify game binary
         working-directory: ./Game
