@@ -1,7 +1,7 @@
 #ifndef BOSS_H
 #define BOSS_H
 #include "Enemy.h"
-#include "all_characters/hero/Hero.h"
+#include "../Hero/Hero.h"
 
 class Boss : public Enemy 
 {

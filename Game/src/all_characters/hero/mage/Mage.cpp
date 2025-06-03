@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Mage.h"
+#include "../../../include/Mage/Mage.h"
 #include <algorithm>
-#include "../../../Skills/Magic.h"
+#include "../../../include/Skills/Magic.h"
 
 Mage::Mage(int level, int experience, int attack, int defence, std::string name, int health, int mana, int spellPower)
     : Hero(level, experience, attack, defence, name, health), mana(mana), spellPower(spellPower) {}

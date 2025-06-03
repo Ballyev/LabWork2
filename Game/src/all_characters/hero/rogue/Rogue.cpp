@@ -1,6 +1,6 @@
 #include <iostream>
 #include <memory>
-#include "Rogue.h"
+#include "../../../include/Rogue/Rogue.h"
 
 Rogue::Rogue(int level, int experience, int attack, int defence, std::string name, int health, int stealth, int criticalChance)
     : Hero(level, experience, attack, defence, name, health), stealth(stealth), criticalChance(criticalChance) {}

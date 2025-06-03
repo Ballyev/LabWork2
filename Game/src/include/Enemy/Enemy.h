@@ -1,9 +1,9 @@
 #ifndef ENEMY_H
 #define ENEMY_H
-#include "all_characters/hero/Hero.h"
+#include "../Hero/Hero.h"
 #include <iostream>
-#include "all_characters/Character.h"
-#include "BattleSystem/BattleSystem.h"
+#include "../Character/Character.h"
+#include "../BattleSystem/BattleSystem.h"
 
 
 class Enemy : public Character {

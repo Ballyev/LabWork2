@@ -12,7 +12,8 @@ SRC_DIRS = \
     src/all_characters/hero/mage \
     src/all_characters/hero/rogue \
     src/all_characters/hero/warrior \
-    src/BattleSystem
+    src/BattleSystem \
+    src/Enemy
 
 SOURCES = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
 OBJECTS = $(SOURCES:.cpp=.o)

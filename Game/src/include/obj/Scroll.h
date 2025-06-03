@@ -1,7 +1,7 @@
 #ifndef SCROLL_H
 #define SCROLL_H
 #include "Item.h"
-#include "../all_characters/hero/Hero.h"
+#include "../Hero/Hero.h"
 
 class Scroll : public Item {
 public:

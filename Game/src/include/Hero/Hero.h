@@ -1,11 +1,11 @@
 #ifndef HERO_H
 #define HERO_H
-#include "../Character.h"
-#include "../../obj/Item.h"
-#include "../../obj/Weapon.h"
+#include "../Character/Character.h"
+#include "../obj/Item.h"
+#include "../obj/Weapon.h"
 #include <vector>
 #include <memory>
-#include "../../Skills/Skills.h"
+#include "../Skills/Skills.h"
 class Hero : public Character{
     public:
     int level;

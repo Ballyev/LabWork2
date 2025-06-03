@@ -1,13 +1,13 @@
 #ifndef WARRIOR_H
 #define WARRIOR_H
-#include "../Hero.h"
+#include "../Hero/Hero.h"
 #include <memory>
 #include <vector>
-#include "../../../obj/Armor.h"
-#include "../../../obj/Item.h"
-#include "../../../Skills/Attack.h"
-#include "../../../Skills/Defence.h"
-#include "../../../Skills/Skills.h"
+#include "../obj/Armor.h"
+#include "../obj/Item.h"
+#include "../Skills/Attack.h"
+#include "../Skills/Defence.h"
+#include "../Skills/Skills.h"
 
 
 class Warrior : public Hero 

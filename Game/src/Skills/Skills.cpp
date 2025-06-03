@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Skills.h"
+#include "../include/Skills/Skills.h"
 
 Skills::Skills(std::string name, std::string description, int cooldown, bool isActive, int currentCooldown)
     : name(std::move(name)), description(std::move(description)), cooldown(cooldown), isActive(isActive), currentCooldown(currentCooldown) {}

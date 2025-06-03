@@ -1,16 +1,16 @@
 #include <iostream>
-#include "src/all_characters/hero/Hero.h"
-#include "src/all_characters/hero/warrior//Warrior.h"
-#include "src/all_characters/hero/rogue/Rogue.h"
-#include "src/all_characters/hero/mage/Mage.h"
-#include "src/dungeon/Dungeon.h"
-#include "src/BattleSystem//BattleSystem.h"
-#include "src/Skills/Attack.h"
-#include "src/Skills/Magic.h"
-#include "src/Skills/Defence.h"
-#include "src/obj//Potion.h"
-#include "src/obj/Scroll.h"
-#include "../Game/src/Boss.h"
+#include "src/include/Hero/Hero.h"
+#include "src/include/Warrior//Warrior.h"
+#include "src/include/Rogue/Rogue.h"
+#include "src/include/Mage/Mage.h"
+#include "src/include/Dungeon/Dungeon.h"
+#include "src/include/BattleSystem//BattleSystem.h"
+#include "src/include/Skills/Attack.h"
+#include "src/include/Skills/Magic.h"
+#include "src/include/Skills/Defence.h"
+#include "src/include/obj//Potion.h"
+#include "src/include/obj/Scroll.h"
+#include "src/include/Enemy/Boss.h"
 
 
 void clearScreen() {

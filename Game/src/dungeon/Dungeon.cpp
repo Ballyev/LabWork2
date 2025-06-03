@@ -1,5 +1,5 @@
-#include "Dungeon.h"
-#include "../Enemy.h"
+#include "../include/Dungeon/Dungeon.h"
+#include "../include/Enemy/Enemy.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

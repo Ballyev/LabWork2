@@ -1,7 +1,7 @@
 #pragma once
-#include "../all_characters/hero/Hero.h"
-#include "../Enemy.h"
-#include "../dungeon/Dungeon.h"
+#include "../Hero/Hero.h"
+#include "../Enemy/Enemy.h"
+#include "../Dungeon/Dungeon.h"
 #include "../Skills/Skills.h"
 
 class BattleSystem {

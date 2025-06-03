@@ -1,4 +1,4 @@
-#include "Magic.h"
+#include "../include/Skills/Magic.h"
 #include <iostream>
 
 Magic::Magic(std::string name, std::string description, int cooldown, bool isActive, int manaCost, int damage, int currentCooldown) : Skills (name, description, cooldown, isActive, currentCooldown), manaCost(manaCost), damage(damage) {}

@@ -1,6 +1,6 @@
-#include "Warrior.h"
+#include "../../../include/Warrior/Warrior.h"
 #include <iostream>
-#include "../../../Enemy.h"
+#include "../../../include/Enemy/Enemy.h"
 
 Warrior::Warrior(std::string name, int level, int experience, int attack, int defence, int health, int rage)
     : Hero(level, experience, attack, defence, name, health), rage(rage) {}

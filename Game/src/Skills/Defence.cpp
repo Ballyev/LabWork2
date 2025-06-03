@@ -1,5 +1,5 @@
 #include  <iostream>
-#include "Defence.h"
+#include "../include/Skills/Defence.h"
 
 Defence::Defence(int defenceBoost, int duration, std::string name, std::string description, int cooldown, bool isActive, int currentCooldown)
     : Skills(name, description, cooldown, isActive, currentCooldown), defenceBoost(defenceBoost), duration(duration) {}

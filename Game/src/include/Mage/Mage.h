@@ -1,9 +1,9 @@
 #ifndef MAGE_H
 #define MAGE_H
-#include "../Hero.h"
+#include "../Hero/Hero.h"
 #include <vector>
-#include "../../../obj/Item.h"
-#include "../../../obj/Potion.h"
+#include "../obj/Item.h"
+#include "../obj/Potion.h"
 
 class Magic;
 

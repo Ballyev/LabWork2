@@ -2,9 +2,9 @@
 #define ROGUE_H
 #include<memory>
 #include<vector>
-#include "../../../obj/Scroll.h"
-#include "../../../obj/Item.h"
-#include "../Hero.h"
+#include "../obj/Scroll.h"
+#include "../obj/Item.h"
+#include "../Hero/Hero.h"
 
 
 class Rogue : public Hero 

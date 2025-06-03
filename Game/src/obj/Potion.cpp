@@ -1,4 +1,4 @@
-#include "Potion.h"
+#include "../include/obj/Potion.h"
 #include <iostream>
 
 Potion::Potion(std::string name, std::string description, bool isConsumable,int healingPower, int duration, int attackPower) : Item(name, description, isConsumable), healingPower(healingPower), duration(duration), attackPower(attackPower) {}

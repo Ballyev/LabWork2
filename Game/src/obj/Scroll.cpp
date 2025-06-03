@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Scroll.h"
+#include "../include/obj/Scroll.h"
 
 Scroll::Scroll(const std::string &name, std::string description, bool isConsumable,const unsigned int _uses, const int &effect)
     : Item(name, description, isConsumable),

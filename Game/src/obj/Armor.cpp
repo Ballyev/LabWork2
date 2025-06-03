@@ -1,4 +1,4 @@
-#include "Armor.h"
+#include "../include/obj/Armor.h"
 #include <iostream>
 
 Armor::Armor(const std::string &name, const std::string &description, const bool isConsumable, const int defence, const int stability)

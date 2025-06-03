@@ -2,7 +2,7 @@
 #define ATTACK_H
 #include <iostream>
 #include "Skills.h"
-#include "../Enemy.h"
+#include "../Enemy/Enemy.h"
 
 class Attack : public Skills
 {

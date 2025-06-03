@@ -1,4 +1,4 @@
-#include "Hero.h"
+#include "../../include/Hero/Hero.h"
 #include <iostream>
 
 Hero::Hero(int level, int experience, int attack, int defence, std::string name, int health)

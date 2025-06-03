@@ -1,6 +1,6 @@
-#include "Enemy.h"
+#include "../include/Enemy/Enemy.h"
 #include <iostream>
-#include "all_characters/Character.h"
+#include "../include/Character/Character.h"
 
 Enemy::Enemy(std::string name, int health, int attack, int defence, int attackPower) : Character(name, health, attack, defence), attackPower(attackPower) {}
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Weapon.h"
+#include "../include/obj/Weapon.h"
 
 Weapon::Weapon(std::string name, std::string description, bool isConsumable, int damage, int durability) : Item(
     name, description, isConsumable), damage(damage), durability(durability) {

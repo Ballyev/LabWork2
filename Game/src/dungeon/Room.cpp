@@ -1,5 +1,5 @@
-#include "Room.h"
-#include "../Enemy.h"
+#include "../include/Dungeon/Room.h"
+#include "../include/Enemy/Enemy.h"
 Room::Room() = default;
 
 void Room::addEnemy(std::unique_ptr<Enemy> enemy) {

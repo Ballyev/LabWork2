@@ -2,9 +2,9 @@
 #define MAGIC_H
 #include <iostream>
 #include "Skills.h"
-#include "../Enemy.h"
+#include "../Enemy/Enemy.h"
 #include <vector>
-#include "../all_characters/hero/mage/Mage.h"
+#include "../Mage/Mage.h"
 
 
 class Magic : public Skills

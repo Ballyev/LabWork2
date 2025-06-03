@@ -1,6 +1,6 @@
-#include "Attack.h"
+#include "../include/Skills/Attack.h"
 #include <iostream>
-#include "../all_characters/hero/Hero.h"
+#include "../include/Hero/Hero.h"
 
 Attack::Attack(int damageMultiplier, std::string name, std::string description, int cooldown, bool isActive, int baseDamage, int currentCooldown)
     : Skills(name, description, cooldown, isActive, currentCooldown), damageMultiplier(damageMultiplier), baseDamage(baseDamage) {}

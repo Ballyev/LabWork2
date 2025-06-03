@@ -1,11 +1,11 @@
-#include "BattleSystem.h"
+#include "../include/BattleSystem/BattleSystem.h"
 #include <iostream>
-#include "../Skills/Attack.h"
-#include "../Skills/Magic.h"
-#include "../Skills/Defence.h"
-#include "../obj/Potion.h"
-#include "../obj/Scroll.h"
-#include "../obj/Item.h"
+#include "../include/Skills/Attack.h"
+#include "../include/Skills/Magic.h"
+#include "../include/Skills/Defence.h"
+#include "../include/obj/Potion.h"
+#include "../include/obj/Scroll.h"
+#include "../include/obj/Item.h"
 #include <vector>
 
 BattleSystem::BattleSystem(Hero& h, Enemy& e, Dungeon& d)

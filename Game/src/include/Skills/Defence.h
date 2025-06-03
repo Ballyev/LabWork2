@@ -1,7 +1,7 @@
 #ifndef DEFENCE_H
 #define DEFENCE_H
 #include "Skills.h"
-#include "../Enemy.h"
+#include "../Enemy/Enemy.h"
 #include "../BattleSystem/BattleSystem.h"
 
 class Defence : public Skills 

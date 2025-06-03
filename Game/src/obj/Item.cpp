@@ -1,6 +1,6 @@
 #include <iostream>
 #include <utility>
-#include "Item.h"
+#include "../include/obj/Item.h"
 
 Item::Item(std::string name, std::string description, bool isConsumable) : name(std::move(name)), description(std::move(description)), isConsumable(isConsumable) {}
 
