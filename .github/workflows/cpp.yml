@@ -1,23 +1,42 @@
-name: C++ CI
+name: Game CI
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
-  build:
-
+  build_and_test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake libgtest-dev build-essential
-      - name: make
-        run: make
-      - name: run_main
-        run: ./main
+          sudo apt-get install -y build-essential cmake libgtest-dev
+          cd /usr/src/googletest
+          sudo cmake -B build -DCMAKE_BUILD_TYPE=Release
+          sudo cmake --build build
+          sudo cmake --install build
+
+      - name: Build project
+        working-directory: ./Game
+        run: |
+          make clean
+          make -j$(nproc) game  # Сначала собираем игру
+          make -j$(nproc) run_tests  # Затем тесты (если нужно)
+
+      - name: Run unit tests
+        working-directory: ./Game
+        run: |
+          ./run_tests  # Запускаем собранный бинарник тестов
+
+      - name: Verify game binary
+        working-directory: ./Game
+        run: |
+          if [ -f ./game ]; then
+            echo "Game built successfully"
+          else
+            echo "Error: Game binary not found!"
+            exit 1
+          fi
