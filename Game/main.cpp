@@ -128,7 +128,6 @@ int main() {
             break;
         }
     }
-
     delete hero;
     return 0;
 }

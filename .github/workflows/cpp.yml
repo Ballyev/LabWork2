@@ -23,13 +23,13 @@ jobs:
         working-directory: ./Game
         run: |
           make clean
-          make -j$(nproc) game  # Сначала собираем игру
-          make -j$(nproc) run_tests  # Затем тесты (если нужно)
+          make -j$(nproc) game  
+          make -j$(nproc) run_tests  
 
       - name: Run unit tests
         working-directory: ./Game
         run: |
-          ./run_tests  # Запускаем собранный бинарник тестов
+          ./run_tests  
 
       - name: Verify game binary
         working-directory: ./Game
